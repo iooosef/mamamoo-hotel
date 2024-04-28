@@ -9,11 +9,11 @@ _mga shit na importante_
 ## MS SQL Server 2008 Configurations:
 1. Ensure that MS SQL Server 2008 R2 is installed together with SQL Server Browser
 2. Ensure **[KB2979597](https://www.microsoft.com/en-us/download/details.aspx?id=44271)** update is installed. (required for KB4057113)
-   > Use the installer `SQLServer2008R2SP3-KB2979597-x64-ENU.exe` found in `/sysResources/SqlServerUpdate.zip`
+   > Use the installer `SQLServer2008R2SP3-KB2979597-x64-ENU.exe` found in [**SqlServerUpdate.zip**](https://drive.google.com/file/d/1666YBqRELfifd4W_k76-KTYo2rCtnqfG/view?usp=sharing)
 3. Ensure **[KB4057113](https://www.microsoft.com/en-us/download/details.aspx?id=56415)** update is installed. (See [problem](https://stackoverflow.com/questions/69623611/how-do-i-allow-java-client-tls10-connections))
-   > Use the installer `SQLServer2008R2-KB4057113-x64.exe` found in `/sysResources/SqlServerUpdate.zip`
+   > Use the installer `SQLServer2008R2-KB4057113-x64.exe` found in [**SqlServerUpdate.zip**](https://drive.google.com/file/d/1666YBqRELfifd4W_k76-KTYo2rCtnqfG/view?usp=sharing)
 4. Add the `mssql-jdbc_auth-12.6.1.x64.dll` binary to `C:\Program Files\Java\jdk-17\bin` or any `\bin` directory of the currently used JDK. (See [problem](https://stackoverflow.com/questions/61117080/no-mssql-jdbc-auth-8-2-1-x64-in-java-library-path))
-   > The binary can be found in `/sysResources`  
+   > Can be downloaded [here](https://drive.google.com/file/d/10Zs_f760wbmR_IGmNmEbMBrw-PvbefKx/view?usp=sharing)
    > Can also be downloaded [here](https://go.microsoft.com/fwlink/?linkid=2262747) and found in `\sqljdbc_12.6\enu\auth\x64\` 
 5. Enable TCP/IP of SQL Server in Sql Server Manager and add port `1434` to IPAll (See [problem](https://stackoverflow.com/questions/18841744/jdbc-connection-failed-error-tcp-ip-connection-to-host-failed))  
    _Extended instructions below_
