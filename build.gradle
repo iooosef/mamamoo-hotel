@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'distribution'
 }
 
 group = 'ph.edu.tip'
@@ -36,4 +38,18 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+task assembleAndRun() {
+    dependsOn 'assemble'
+    outputs.dir "${project.buildDir}\\out"
+
+    doLast {
+        exec {
+            commandLine 'powershell', '-Command', 'Expand-Archive', '-LiteralPath', "'${project.buildDir}\\distributions\\${project.name}-${version}.zip'", '-DestinationPath', "'${project.buildDir}\\out'"
+        }
+        exec {
+            commandLine 'cmd', "/C", "\"${project.buildDir}\\out\\${project.name}-${version}\\bin\\${project.name}\""
+        }
+    }
 }
