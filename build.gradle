@@ -28,6 +28,14 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+application {
+    mainClass = 'ph.edu.tip.mamamoo.Main'
+    File outDir = new File('/out')
+    outDir.mkdirs()
+    tasks.run.workingDir = outDir
+}
+
 distributions {
     main {
         contents {
@@ -37,6 +45,17 @@ distributions {
             }
         }
     }
+}
+
+run {
+    doFirst {
+        copy {
+            from 'src/main/resources'
+            into 'out'
+            exclude '**/*.properties'
+        }
+    }
+    standardInput = System.in
 }
 
 task assembleAndRun() {
