@@ -63,11 +63,14 @@ task assembleAndRun() {
     outputs.dir "${project.buildDir}\\out"
 
     doLast {
+        def binDir = file("${project.buildDir}\\out\\${project.name}-${version}\\")
+        println(binDir)
         exec {
             commandLine 'powershell', '-Command', 'Expand-Archive', '-LiteralPath', "'${project.buildDir}\\distributions\\${project.name}-${version}.zip'", '-DestinationPath', "'${project.buildDir}\\out'"
         }
         exec {
-            commandLine 'cmd', "/C", "\"${project.buildDir}\\out\\${project.name}-${version}\\bin\\${project.name}\""
+            workingDir binDir
+            commandLine 'powershell', "-Command", "& '${project.buildDir}\\out\\${project.name}-${version}\\bin\\${project.name}.bat'"
         }
     }
 }
