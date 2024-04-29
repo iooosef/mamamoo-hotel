@@ -7,17 +7,6 @@ plugins {
 group = 'ph.edu.tip'
 version = '1.0-SNAPSHOT'
 
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src/main/java']
-        }
-        resources {
-            srcDirs = ['src/main/resources']
-        }
-    }
-}
-
 repositories {
     mavenCentral()
 }
