@@ -39,6 +39,16 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+distributions {
+    main {
+        contents {
+            into('') {
+                from 'src/main/resources'
+                exclude '**/*.properties'
+            }
+        }
+    }
+}
 
 task assembleAndRun() {
     dependsOn 'assemble'
