@@ -8,10 +8,4 @@ public class HomePage extends JPanel {
         welcomeLbl = new JLabel("Welcome to Mamamoo Hotel!");
         add(welcomeLbl);
     }
-    public void showHomePage(){
-        setVisible(true);
-    }
-    public void hideHomePage(){
-        setVisible(false);
-    }
 }
