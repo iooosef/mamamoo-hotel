@@ -1,5 +1,6 @@
 package ph.edu.tip.mamamoo.Pages;
 
+import ph.edu.tip.mamamoo.ActionListeners.GoToRegisterListener;
 import ph.edu.tip.mamamoo.ActionListeners.LoginListener;
 
 import javax.swing.*;
@@ -12,12 +13,15 @@ public class LoginPage extends JPanel {
     private JButton loginBtn;
     private JLabel statusLbl;
     private LoginListener loginListener;
+    private GoToRegisterListener goToRegisterListener;
 
     public LoginPage() {
         usernameBox = new JTextField(20);
         passwordBox = new JPasswordField(16);
         loginBtn = new JButton("Login");
         statusLbl = new JLabel();
+        this.setFocusable(true);
+        this.requestFocusInWindow();
 
         add(new Label("Username:"));
         add(usernameBox);
@@ -39,5 +43,8 @@ public class LoginPage extends JPanel {
         this.loginListener = listener;
         loginBtn.addActionListener(listener);
     }
-
+    public void addGoToRegisterListener(GoToRegisterListener listener) {
+        this.goToRegisterListener = listener;
+        this.addKeyListener(listener);
+    }
 }
