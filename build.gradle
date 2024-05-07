@@ -43,6 +43,9 @@ distributions {
                 from 'src/main/resources'
                 exclude '**/*.properties'
             }
+            into("\\${project.name}-${version}\\static") {
+                from 'src/main/java/ph/edu/tip/mamamoo/static'
+            }
         }
     }
 }
@@ -53,6 +56,10 @@ run {
             from 'src/main/resources'
             into 'out'
             exclude '**/*.properties'
+        }
+        copy {
+            from 'src/main/java/ph/edu/tip/mamamoo/static'
+            into 'out/static'
         }
     }
     standardInput = System.in
