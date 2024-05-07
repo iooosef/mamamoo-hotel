@@ -28,12 +28,13 @@ public class MultiPageApp extends JFrame {
 
         loginPage.addLoginListener(loginListener);
         loginPage.addGoToRegisterListener(goToRegisterListener);
-        showLoginPage();
+        showPage(homePage); // TODO : Change this back to loginPage
+
     }
 
-    private void showLoginPage(){
+    private void showPage(JPanel page){
         this.getContentPane().removeAll();
-        this.getContentPane().add(loginPage);
+        this.getContentPane().add(page);
         this.revalidate();
         this.repaint();
     }
