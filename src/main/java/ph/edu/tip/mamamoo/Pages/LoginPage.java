@@ -39,11 +39,5 @@ public class LoginPage extends JPanel {
         this.loginListener = listener;
         loginBtn.addActionListener(listener);
     }
-    public void showLoginPage() {
-        setVisible(true);
-    }
-    public void hideLoginPage() {
-        setVisible(false);
-    }
 
 }
