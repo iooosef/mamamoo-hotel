@@ -22,13 +22,17 @@ public class LoginListener implements ActionListener {
         String login_username = loginPage.getUsername();
         char[] login_password = loginPage.getPassword();
         if(login_username.equals("admin") && new String(login_password).equals("admin")){
-            app.getContentPane().removeAll();
-            app.getContentPane().add(homePage);
-            app.revalidate();
-            app.repaint();
+            showHomePage();
             _logger.info("User logged in!");
         } else {
             loginPage.setStatus("Invalid username or password");
         }
+    }
+    private MultiPageApp showHomePage(){
+        app.getContentPane().removeAll();
+        app.getContentPane().add(homePage);
+        app.revalidate();
+        app.repaint();
+        return app;
     }
 }
