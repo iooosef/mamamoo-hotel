@@ -16,7 +16,7 @@ public class NavBar extends JPanel {
     final Logger _logger = LogManager.getLogger();
     private JLabel logoLabel;
     public NavBar() {
-        this.setLayout(new MigLayout("flowy, insets 15"));
+        this.setLayout(new MigLayout("flowy, gapy 10, insets 10, align center"));
         this.setPreferredSize(new Dimension(200, 768));
         this.setBackground(new Color(0, 120, 215));
 
@@ -53,7 +53,6 @@ public class NavBar extends JPanel {
             _logger.error("Error loading logo");
             label = new JLabel("LOGO HERE");
         }
-        label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         return label;
     }
     private ImageIcon getIcon(String path, int width, int height) {
