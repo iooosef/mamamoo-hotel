@@ -3,6 +3,7 @@ package ph.edu.tip.mamamoo.Pages.Shared;
 import net.miginfocom.swing.MigLayout;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ph.edu.tip.mamamoo.Components.ClockPanel;
 import ph.edu.tip.mamamoo.Components.NavButton;
 
 import javax.imageio.ImageIO;
@@ -32,11 +33,16 @@ public class NavBar extends JPanel {
         NavButton bookingsNavBtn = new NavButton(" Bookings", getIcon("./static/images/bookings_ico.png", 24, 24));
         this.add(bookingsNavBtn, "growx");
 
-        JLabel homeLabel = new JLabel("Home");
-        homeLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.add(homeLabel, "growx");
         NavButton roomServiceNavBtn = new NavButton(" Room Service", getIcon("./static/images/room_service_ico.png", 24, 24));
         this.add(roomServiceNavBtn, "growx");
+
+        ClockPanel clock = new ClockPanel();
+        JPanel alignYEnd = new JPanel();
+        alignYEnd.setLayout(new BoxLayout(alignYEnd, BoxLayout.Y_AXIS));
+        alignYEnd.setBackground(null);
+        alignYEnd.add(Box.createVerticalGlue());
+        alignYEnd.add(clock, BorderLayout.SOUTH);
+        this.add(alignYEnd, "growx, h 100%");
     }
     private JLabel getLogoLabel(JLabel label, String path, int width, int height) {
         try {
