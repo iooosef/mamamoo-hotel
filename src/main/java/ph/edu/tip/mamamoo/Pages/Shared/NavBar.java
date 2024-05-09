@@ -3,6 +3,7 @@ package ph.edu.tip.mamamoo.Pages.Shared;
 import net.miginfocom.swing.MigLayout;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ph.edu.tip.mamamoo.Components.NavButton;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -18,12 +19,24 @@ public class NavBar extends JPanel {
         this.setPreferredSize(new Dimension(200, 768));
         this.setBackground(new Color(0, 120, 215));
 
-        logoLabel = getLogoLabel(logoLabel,"./static/images/logo_sidebar.png", 160, -1);
+        logoLabel = getLogoLabel(logoLabel,"./static/images/logo_sidebar.png", 175, -1);
         this.add(logoLabel);
+
+        NavButton homeNavBtn = new NavButton(" Home", getIcon("./static/images/home_ico.png", 24, 24));
+        homeNavBtn.setDefaultBgColor(new Color(4, 58, 78));
+        this.add(homeNavBtn, "growx");
+
+        NavButton roomsNavBtn = new NavButton(" Rooms", getIcon("./static/images/rooms_ico.png", 24, 24));
+        this.add(roomsNavBtn, "growx");
+
+        NavButton bookingsNavBtn = new NavButton(" Bookings", getIcon("./static/images/bookings_ico.png", 24, 24));
+        this.add(bookingsNavBtn, "growx");
 
         JLabel homeLabel = new JLabel("Home");
         homeLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.add(homeLabel, "growx");
+        NavButton roomServiceNavBtn = new NavButton(" Room Service", getIcon("./static/images/room_service_ico.png", 24, 24));
+        this.add(roomServiceNavBtn, "growx");
     }
     private JLabel getLogoLabel(JLabel label, String path, int width, int height) {
         try {
