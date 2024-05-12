@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ph.edu.tip.mamamoo.Components.ClockPanel;
 import ph.edu.tip.mamamoo.Components.NavButton;
+import ph.edu.tip.mamamoo.Utilities.IconUtility;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -23,17 +24,17 @@ public class NavBar extends JPanel {
         logoLabel = getLogoLabel(logoLabel,"./static/images/logo_sidebar.png", 175, -1);
         this.add(logoLabel);
 
-        NavButton homeNavBtn = new NavButton(" Home", getIcon("./static/images/home_ico.png", 24, 24));
+        NavButton homeNavBtn = new NavButton(" Home", IconUtility.getIcon("./static/images/home_ico.png", 24, 24));
         homeNavBtn.setDefaultBgColor(new Color(4, 58, 78));
         this.add(homeNavBtn, "growx");
 
-        NavButton roomsNavBtn = new NavButton(" Rooms", getIcon("./static/images/rooms_ico.png", 24, 24));
+        NavButton roomsNavBtn = new NavButton(" Rooms", IconUtility.getIcon("./static/images/rooms_ico.png", 24, 24));
         this.add(roomsNavBtn, "growx");
 
-        NavButton bookingsNavBtn = new NavButton(" Bookings", getIcon("./static/images/bookings_ico.png", 24, 24));
+        NavButton bookingsNavBtn = new NavButton(" Bookings", IconUtility.getIcon("./static/images/bookings_ico.png", 24, 24));
         this.add(bookingsNavBtn, "growx");
 
-        NavButton roomServiceNavBtn = new NavButton(" Room Service", getIcon("./static/images/room_service_ico.png", 24, 24));
+        NavButton roomServiceNavBtn = new NavButton(" Room Service", IconUtility.getIcon("./static/images/room_service_ico.png", 24, 24));
         this.add(roomServiceNavBtn, "growx");
 
         ClockPanel clock = new ClockPanel();
