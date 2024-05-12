@@ -7,7 +7,6 @@ import ph.edu.tip.mamamoo.Pages.LoginPage;
 import ph.edu.tip.mamamoo.Pages.RegisterPage;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class MultiPageApp extends JFrame {
     private LoginPage loginPage;
