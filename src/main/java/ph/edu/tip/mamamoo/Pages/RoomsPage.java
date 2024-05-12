@@ -2,6 +2,7 @@ package ph.edu.tip.mamamoo.Pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ph.edu.tip.mamamoo.MultiPageApp;
 import ph.edu.tip.mamamoo.Pages.Shared.MainPanel;
 import ph.edu.tip.mamamoo.Pages.Shared.NavBar;
 
@@ -10,15 +11,20 @@ import java.awt.*;
 
 public class RoomsPage extends JPanel {
     final Logger _logger = LogManager.getLogger();
+    private MultiPageApp app;
     private NavBar navBar;
     private MainPanel mainPanel;
-    public RoomsPage(){
+    public RoomsPage(MultiPageApp app){
+        this.app = app;
         this.setLayout(new BorderLayout());
-        navBar = new NavBar();
+        navBar = new NavBar(app, this);
         this.add(navBar, BorderLayout.WEST);
 
         this.mainPanel = new MainPanel("Book a Room");
         this.add(mainPanel, BorderLayout.CENTER);
+    }
 
+    public NavBar getNavBar() {
+        return navBar;
     }
 }
