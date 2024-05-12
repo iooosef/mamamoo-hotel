@@ -9,6 +9,11 @@ erDiagram
         nvarchar(MAX) room_rate_type "NN; CHECK(room_rate_type in ('hourly','nightly'))"
         money room_rate "NN"
     }
+    RoomPics{
+        int room_pic_id PK "IDENTITY(1,1)"
+        int room_id FK "NN; FK(Rooms)"
+        image room_pic_img "NN"
+    }
     RoomTypes {
         int room_type_id PK "IDENTITY(1,1)"
         nvarchar(MAX) room_type_name "NN"
@@ -17,16 +22,17 @@ erDiagram
         int amnty_id PK "IDENTITY(1,1)"
         nvarchar(MAX) amnty_name "NN"
         nvarchar(MAX) amnty_desc "NN"
+        image amnty_img
     }
     RoomAmenities {
         int room_amnty_id PK "IDENTITY(1,1)"
-        int room_num FK "NN; FK(Rooms)"
+        int room_id FK "NN; FK(Rooms)"
         int amnty_id FK "NN; FK(Amenities)"
         int amnty_count "NN"
     }
     Bookings {
         int bkng_id PK "IDENTITY(1,1)"
-        int room_num FK "NN; FK(Rooms)"
+        int room_id FK "NN; FK(Rooms)"
         datetime booking_datetime "NN"
         datetime check_in_datetime "NN"
         datetime check_out_datetime "NN"
@@ -36,7 +42,8 @@ erDiagram
         nvarchar(MAX) guest_ext_name "NN"
         nvarchar(15) contact_num "NN"
         nvarchar(16) membership_id FK "FK(Memberships)"
-        money tran_bkng_fee "NN"
+        money bkng_fee "NN"
+        nvarchar(MAX) status "NN; CHECK(status in ('booked','checked-in','checked-out','cancelled'))"
     }
     ServiceFees {
         int service_id PK "IDENTITY(1,1)"
@@ -51,35 +58,51 @@ erDiagram
         money penalty_cost "NN"
     }
     Discounts {
-        int discount_id PK "IDENTITY(1,1)"
-        int bkng_id FK "NN; FK(Bookings)"
-        nvarchar(12) discount_typ "NN; CHECK(discount_typ in ('voucher','sc','pwd'))"
-        nvarchar(50) discount_id_number "NN"
-        money discount_cost "NN"
+        int dscnt_id PK "IDENTITY(1,1)"
+        nvarchar(64) dscnt_code UK "NN"
+        decimal dscnt_amount "decimal(12,4)"
+        int dscnt_count "NN"
+        datetime dscnt_expiry "NN"
+        nvarchar(max) dscnt_dti_permit "NN"
     }
     Payments {
         int payment_id PK "IDENTITY(1,1)"
         int bkng_id FK "NN; FK(Bookings)"
         nvarchar(50) payment_number UK "NN"
         datetime payment_datetime "NN"
+        int payment_method_id FK "NN; FK(PaymentMethods)"
         money payment_tax_fee "NN"
         money payment_cost_adj
         money payment "NN"
         money payment_refund "NN"
         money payment_tip
     }
+    PaymentDiscounts {
+        int pay_dscnt_id PK "IDENTITY(1,1)"
+        int payment_id FK "NN; FK(Payments)"
+        int dscnt_id FK "NN; FK(Discounts)"
+    }
     PaymentMethods {
         int pay_method_id PK "IDENTITY(1,1)"
-        int payment_id FK "NN; FK(Payments)"
         nvarchar(MAX) pay_method_name "NN"
     }
-    Rooms ||--|{ RoomTypes : of
-    Rooms ||--|{ RoomAmenities : have
-    Amenities ||--|{ RoomAmenities : on
-    Rooms ||--|{ Bookings : have
-    Bookings ||--o{ ServiceFees : have
-    Bookings ||--o{ PenaltyFees : have
-    Bookings ||--o{ Discounts : have
-    Bookings ||--|| Payments : have
-    Bookings ||--|{ PaymentMethods : have
+    Memberships {
+        int member_id PK "IDENTITY(1,1)"
+        nvarchar(16) member_code "NN"
+        nvarchar(MAX) member_full_name "NN"
+        nvarchar(MAX) member_contact_number "NN"
+        nvarchar(MAX) member_email "NN"
+    }
+    RoomTypes ||--|{ Rooms  : "is"
+    Rooms ||--|{ RoomAmenities : "have"
+    Rooms ||--|{ RoomPics : "have"
+    Amenities ||--|{ RoomAmenities : "is on"
+    Rooms ||--o{ Bookings : "have"
+    Bookings ||--|| Payments : "have"
+    Discounts ||--|{ PaymentDiscounts : "used in"
+    Payments ||--o{ PaymentDiscounts : "have"
+    Payments ||--o{ ServiceFees : "have incurred"
+    Payments ||--o{ PenaltyFees : "have incurred"
+    PaymentMethods ||--|{ Payments  : "used in"
+    Memberships ||--|{ Bookings : "have"
 ```
