@@ -3,8 +3,11 @@ package ph.edu.tip.mamamoo.Pages.Shared;
 import net.miginfocom.swing.MigLayout;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ph.edu.tip.mamamoo.ActionListeners.NavButtonListener;
 import ph.edu.tip.mamamoo.Components.ClockPanel;
 import ph.edu.tip.mamamoo.Components.NavButton;
+import ph.edu.tip.mamamoo.Models.NavButtonsModel;
+import ph.edu.tip.mamamoo.MultiPageApp;
 import ph.edu.tip.mamamoo.Utilities.IconUtility;
 
 import javax.imageio.ImageIO;
@@ -15,6 +18,8 @@ import java.io.File;
 
 public class NavBar extends JPanel {
     final Logger _logger = LogManager.getLogger();
+    private MultiPageApp app;
+    private JPanel parentPanel;
     private JLabel logoLabel;
     private NavButtonsModel navButtons;
 
