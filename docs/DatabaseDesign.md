@@ -41,7 +41,6 @@ erDiagram
         nvarchar(MAX) guest_middle_name "NN"
         nvarchar(MAX) guest_ext_name "NN"
         nvarchar(15) contact_num "NN"
-        nvarchar(16) membership_id FK "FK(Memberships)"
         money bkng_fee "NN"
         nvarchar(MAX) status "NN; CHECK(status in ('booked','checked-in','checked-out','cancelled'))"
     }
@@ -86,13 +85,6 @@ erDiagram
         int pay_method_id PK "IDENTITY(1,1)"
         nvarchar(MAX) pay_method_name "NN"
     }
-    Memberships {
-        int member_id PK "IDENTITY(1,1)"
-        nvarchar(16) member_code "NN"
-        nvarchar(MAX) member_full_name "NN"
-        nvarchar(MAX) member_contact_number "NN"
-        nvarchar(MAX) member_email "NN"
-    }
     RoomTypes ||--|{ Rooms  : "is"
     Rooms ||--|{ RoomAmenities : "have"
     Rooms ||--|{ RoomPics : "have"
@@ -104,5 +96,4 @@ erDiagram
     Payments ||--o{ ServiceFees : "have incurred"
     Payments ||--o{ PenaltyFees : "have incurred"
     PaymentMethods ||--|{ Payments  : "used in"
-    Memberships ||--|{ Bookings : "have"
 ```
