@@ -45,6 +45,7 @@ public class NavBar extends JPanel {
         alignYEnd.add(clock, BorderLayout.SOUTH);
         this.add(alignYEnd, "growx, h 100%");
     }
+
     private JLabel getLogoLabel(JLabel label, String path, int width, int height) {
         try {
             BufferedImage logoImg = ImageIO.read(new File(path));
@@ -55,5 +56,9 @@ public class NavBar extends JPanel {
             label = new JLabel("LOGO HERE");
         }
         return label;
+    }
+
+    public void addNavButtonListenerTo(NavButtonListener listener, NavButton selectedBtn) {
+        selectedBtn.addActionListener(listener);
     }
 }
