@@ -16,7 +16,8 @@ CREATE TABLE RoomPics (
 
 CREATE TABLE RoomTypes (
     room_type_id INT IDENTITY(1,1) PRIMARY KEY,
-    room_type_name NVARCHAR(MAX) NOT NULL
+    room_type_name NVARCHAR(MAX) NOT NULL,
+    bkng_fee MONEY NOT NULL
 );
 
 CREATE TABLE Amenities (
