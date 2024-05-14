@@ -3,6 +3,7 @@ package ph.edu.tip.mamamoo.Data;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ph.edu.tip.mamamoo.Models.BookARoomCellModel;
+import ph.edu.tip.mamamoo.Models.BookingsOfRoomModel;
 import ph.edu.tip.mamamoo.Models.RoomAmenitiesModel;
 import ph.edu.tip.mamamoo.Utilities.DotEnvUtility;
 
@@ -109,5 +110,33 @@ public class RoomsPageData {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public ArrayList<BookingsOfRoomModel> getBookingsOfRoom(int roomId) {
+        try (Connection conn = DriverManager.getConnection(connectionString)) {
+            String storedProcedureCall = "{call HotelAppDB.dbo.usp_getBookingsOfRoom(?)}";
+            CallableStatement callableStatement = conn.prepareCall(storedProcedureCall);
+            callableStatement.setInt(1, roomId);
+
+            callableStatement.execute();
+
+            ResultSet resultSet = callableStatement.getResultSet();
+            ArrayList<BookingsOfRoomModel> results = new ArrayList<BookingsOfRoomModel>();
+            BookingsOfRoomModel resultRow;
+            while (resultSet.next()) {
+                resultRow = new BookingsOfRoomModel();
+                resultRow.id = resultSet.getInt("bkng_id");
+                resultRow.checkIn = resultSet.getTimestamp("check_in_datetime");
+                resultRow.checkOut = resultSet.getTimestamp("check_out_datetime");
+                resultRow.status = resultSet.getString("status");
+                results.add(resultRow);
+            }
+            _logger.info("Successfully retrieved bookings of room.");
+            return results;
+        } catch (SQLException e) {
+            _logger.error("Error! Failed to get bookings of room.");
+            e.printStackTrace();
+            return null;
+        }
     }
 }
