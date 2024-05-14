@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ph.edu.tip.mamamoo.Components.NavButton;
 import ph.edu.tip.mamamoo.Data.RoomsPageData;
+import ph.edu.tip.mamamoo.Dialogs.BookARoomDialog;
 import ph.edu.tip.mamamoo.Models.BookARoomCellModel;
 import ph.edu.tip.mamamoo.MultiPageApp;
 import ph.edu.tip.mamamoo.Pages.Shared.MainPanel;
@@ -12,6 +13,8 @@ import ph.edu.tip.mamamoo.Pages.Shared.NavBar;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
@@ -50,7 +53,7 @@ public class RoomsPage extends JPanel {
                         Color.BLACK,
                         Color.BLACK);
 //                cell.setPreferredSize(new Dimension(100, 300));
-                cell.setLayout(new MigLayout("flowy, gap 0, inset 0, w 100%, h 100%, debug"));
+                cell.setLayout(new MigLayout("flowy, gap 0, inset 0, w 100%, h 100%"));
                 cell.setBorder(null);
                 cell.setMargin(null);
                 gridPanel.add(cell);
@@ -68,11 +71,11 @@ public class RoomsPage extends JPanel {
                 roomInfoPanel.setBackground(null);
                 cell.add(roomInfoPanel, "growx");
                 {
-                    JLabel roomTypeLabel = new JLabel(room.type);
-                    roomTypeLabel.setFont(new Font("Sans Serif", Font.ITALIC, 16));
-                    roomInfoPanel.add(roomTypeLabel, "pushx, alignx left");
+                    JLabel roomTypeLbl = new JLabel(room.num + ": " + room.type);
+                    roomTypeLbl.setFont(new Font("Sans Serif", Font.ITALIC, 14));
+                    roomInfoPanel.add(roomTypeLbl, "pushx, alignx left");
 
-                    JPanel rateInfoPanel = new JPanel(new MigLayout("gap 0, inset 0, debug"));
+                    JPanel rateInfoPanel = new JPanel(new MigLayout("gap 0, inset 0"));
                     rateInfoPanel.setBackground(null);
                     roomInfoPanel.add(rateInfoPanel, "pushx, alignx right");
                     {
@@ -113,6 +116,14 @@ public class RoomsPage extends JPanel {
                         }
                     });
                 }
+                //add action listener starting frame for each cell
+                cell.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        BookARoomDialog bookARoomDialog = new BookARoomDialog(app, room);
+                        bookARoomDialog.setVisible(true);
+                    }
+                });
             });
         }
     }
