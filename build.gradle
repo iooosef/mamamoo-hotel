@@ -27,6 +27,9 @@ dependencies {
     implementation 'com.miglayout:miglayout-swing:5.0'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     implementation 'org.apache.commons:commons-lang3:3.12.0'
+    // https://mvnrepository.com/artifact/com.github.lgooddatepicker/LGoodDatePicker
+    implementation 'com.github.lgooddatepicker:LGoodDatePicker:11.2.0'
+
 
 }
 
