@@ -37,36 +37,36 @@ public class MultiPageApp extends JFrame {
         showPage(homePage); // TODO : Change this back to loginPage
 
         NavBar homePageNavBar = homePage.getNavBar();
-        NavButtonListener toRoomsPageListener = new NavButtonListener(this, homePageNavBar, roomsPage);
-        homePageNavBar.addNavButtonListenerTo(toRoomsPageListener, homePageNavBar.getNavButtons().roomsButton);
-        NavButtonListener toBookingsPageListener = new NavButtonListener(this, homePageNavBar, bookingsPage);
-        homePageNavBar.addNavButtonListenerTo(toBookingsPageListener, homePageNavBar.getNavButtons().bookingsButton);
-        NavButtonListener toRoomServicePageListener = new NavButtonListener(this, homePageNavBar, roomServicePage);
-        homePageNavBar.addNavButtonListenerTo(toRoomServicePageListener, homePageNavBar.getNavButtons().roomServiceButton);
+        homePageNavBar.addNavButtonListenerTo(new NavButtonListener(this, homePageNavBar, roomsPage),
+                homePageNavBar.getNavButtons().roomsButton);
+        homePageNavBar.addNavButtonListenerTo(new NavButtonListener(this, homePageNavBar, bookingsPage),
+                homePageNavBar.getNavButtons().bookingsButton);
+        homePageNavBar.addNavButtonListenerTo(new NavButtonListener(this, homePageNavBar, roomServicePage),
+                homePageNavBar.getNavButtons().roomServiceButton);
 
         NavBar roomsPageNavBar = roomsPage.getNavBar();
-        NavButtonListener toHomePageListener = new NavButtonListener(this, roomsPageNavBar, homePage);
-        roomsPageNavBar.addNavButtonListenerTo(toHomePageListener, roomsPageNavBar.getNavButtons().homeButton);
-        NavButtonListener toBookingsPageFromRoomsPageListener = new NavButtonListener(this, roomsPageNavBar, bookingsPage);
-        roomsPageNavBar.addNavButtonListenerTo(toBookingsPageFromRoomsPageListener, roomsPageNavBar.getNavButtons().bookingsButton);
-        NavButtonListener toRoomServicePageFromRoomsPageListener = new NavButtonListener(this, roomsPageNavBar, roomServicePage);
-        roomsPageNavBar.addNavButtonListenerTo(toRoomServicePageFromRoomsPageListener, roomsPageNavBar.getNavButtons().roomServiceButton);
+        roomsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, roomsPageNavBar, homePage),
+                roomsPageNavBar.getNavButtons().homeButton);
+        roomsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, roomsPageNavBar, bookingsPage),
+                roomsPageNavBar.getNavButtons().bookingsButton);
+        roomsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, roomsPageNavBar, roomServicePage),
+                roomsPageNavBar.getNavButtons().roomServiceButton);
 
         NavBar bookingsPageNavBar = bookingsPage.getNavBar();
-        NavButtonListener toHomePageFromBookingsPageListener = new NavButtonListener(this, bookingsPageNavBar, homePage);
-        bookingsPageNavBar.addNavButtonListenerTo(toHomePageFromBookingsPageListener, bookingsPageNavBar.getNavButtons().homeButton);
-        NavButtonListener toRoomsPageFromBookingsPageListener = new NavButtonListener(this, bookingsPageNavBar, roomsPage);
-        bookingsPageNavBar.addNavButtonListenerTo(toRoomsPageFromBookingsPageListener, bookingsPageNavBar.getNavButtons().roomsButton);
-        NavButtonListener toRoomServicePageFromBookingsPageListener = new NavButtonListener(this, bookingsPageNavBar, roomServicePage);
-        bookingsPageNavBar.addNavButtonListenerTo(toRoomServicePageFromBookingsPageListener, bookingsPageNavBar.getNavButtons().roomServiceButton);
+        bookingsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, bookingsPageNavBar, homePage),
+                bookingsPageNavBar.getNavButtons().homeButton);
+        bookingsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, bookingsPageNavBar, roomsPage),
+                bookingsPageNavBar.getNavButtons().roomsButton);
+        bookingsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, bookingsPageNavBar, roomServicePage),
+                bookingsPageNavBar.getNavButtons().roomServiceButton);
 
         NavBar roomServicePageNavBar = roomServicePage.getNavBar();
-        NavButtonListener toHomePageFromRoomServicePageListener = new NavButtonListener(this, roomServicePageNavBar, homePage);
-        roomServicePageNavBar.addNavButtonListenerTo(toHomePageFromRoomServicePageListener, roomServicePageNavBar.getNavButtons().homeButton);
-        NavButtonListener toRoomsPageFromRoomServicePageListener = new NavButtonListener(this, roomServicePageNavBar, roomsPage);
-        roomServicePageNavBar.addNavButtonListenerTo(toRoomsPageFromRoomServicePageListener, roomServicePageNavBar.getNavButtons().roomsButton);
-        NavButtonListener toBookingsPageFromRoomServicePageListener = new NavButtonListener(this, roomServicePageNavBar, bookingsPage);
-        roomServicePageNavBar.addNavButtonListenerTo(toBookingsPageFromRoomServicePageListener, roomServicePageNavBar.getNavButtons().bookingsButton);
+        roomServicePageNavBar.addNavButtonListenerTo(new NavButtonListener(this, roomServicePageNavBar, homePage),
+                roomServicePageNavBar.getNavButtons().homeButton);
+        roomServicePageNavBar.addNavButtonListenerTo(new NavButtonListener(this, roomServicePageNavBar, roomsPage),
+                roomServicePageNavBar.getNavButtons().roomsButton);
+        roomServicePageNavBar.addNavButtonListenerTo(new NavButtonListener(this, roomServicePageNavBar, bookingsPage),
+                roomServicePageNavBar.getNavButtons().bookingsButton);
 
     }
 
