@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 import ph.edu.tip.mamamoo.Components.NavButton;
 import ph.edu.tip.mamamoo.Data.RoomsPageData;
 import ph.edu.tip.mamamoo.Models.BookARoomCellModel;
-import ph.edu.tip.mamamoo.Models.RoomAmenitiesModel;
 import ph.edu.tip.mamamoo.MultiPageApp;
 import ph.edu.tip.mamamoo.Pages.Shared.MainPanel;
 import ph.edu.tip.mamamoo.Pages.Shared.NavBar;
@@ -56,12 +55,12 @@ public class RoomsPage extends JPanel {
                 cell.setMargin(null);
                 gridPanel.add(cell);
 
-                Image scaledImage = room.roomImage.getScaledInstance(245, -1, Image.SCALE_SMOOTH);
+                Image scaledImage = room.image.getScaledInstance(245, -1, Image.SCALE_SMOOTH);
                 JLabel roomThumbnail = new JLabel(new ImageIcon(scaledImage));
                 roomThumbnail.setBorder(null);
                 cell.add(roomThumbnail, "grow");
 
-                JLabel roomLabel = new JLabel(room.roomName);
+                JLabel roomLabel = new JLabel(room.name);
                 roomLabel.setFont(new Font("Sans Serif", Font.BOLD, 18));
                 cell.add(roomLabel, "gap 5 5 5 0");
 
@@ -69,7 +68,7 @@ public class RoomsPage extends JPanel {
                 roomInfoPanel.setBackground(null);
                 cell.add(roomInfoPanel, "growx");
                 {
-                    JLabel roomTypeLabel = new JLabel(room.roomType);
+                    JLabel roomTypeLabel = new JLabel(room.type);
                     roomTypeLabel.setFont(new Font("Sans Serif", Font.ITALIC, 16));
                     roomInfoPanel.add(roomTypeLabel, "pushx, alignx left");
 
@@ -77,18 +76,18 @@ public class RoomsPage extends JPanel {
                     rateInfoPanel.setBackground(null);
                     roomInfoPanel.add(rateInfoPanel, "pushx, alignx right");
                     {
-                        JLabel roomPriceLabel = new JLabel(String.format("\u20B1 %.2f", room.roomPrice));
+                        JLabel roomPriceLabel = new JLabel(String.format("\u20B1 %.2f", room.price));
                         roomPriceLabel.setFont(new Font("Sans Serif", Font.BOLD, 14));
                         rateInfoPanel.add(roomPriceLabel, "pushx, alignx right");
 
-                        JLabel roomRateLabel = new JLabel(" / " + room.roomRate);
+                        JLabel roomRateLabel = new JLabel(" / " + room.rate);
                         roomRateLabel.setFont(new Font("Sans Serif", Font.PLAIN, 14));
                         rateInfoPanel.add(roomRateLabel, "pushx, alignx right");
 
                     }
                 }
 
-                JLabel roomDescLabel = new JLabel(room.roomDesc);
+                JLabel roomDescLabel = new JLabel(room.desc);
                 roomDescLabel.setFont(new Font("Sans Serif", Font.PLAIN, 14));
                 roomDescLabel.setMaximumSize(new Dimension(230, roomDescLabel.getPreferredSize().height));
                 cell.add(roomDescLabel, "growx, gapx 5 5, gapy 2.5 5");
@@ -97,7 +96,7 @@ public class RoomsPage extends JPanel {
                 amenitiesPanel.setBackground(null);
                 cell.add(amenitiesPanel, "growx");
                 {
-                    room.roomAmenities.forEach(amenity -> {
+                    room.amenities.forEach(amenity -> {
                         JTextArea amenityLabel = new JTextArea();
                         if (
                             containsIgnoreCase(amenity.roomAmenityName, "bed") ||

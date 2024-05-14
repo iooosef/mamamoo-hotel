@@ -41,13 +41,13 @@ public class RoomsPageData {
             ResultSet resultSet = callableStatement.getResultSet();
             while (resultSet.next()) {
                 resultRow = new BookARoomCellModel();
-                resultRow.roomId = resultSet.getInt("room_id");
-                resultRow.roomNum = resultSet.getString("room_num");
-                resultRow.roomName = resultSet.getString("room_name");
-                resultRow.roomType = resultSet.getString("room_type_name");
-                resultRow.roomDesc = resultSet.getString("room_desc");
-                resultRow.roomRate = resultSet.getString("room_rate_type");
-                resultRow.roomPrice = resultSet.getBigDecimal("room_rate");
+                resultRow.id = resultSet.getInt("room_id");
+                resultRow.num = resultSet.getString("room_num");
+                resultRow.name = resultSet.getString("room_name");
+                resultRow.type = resultSet.getString("room_type_name");
+                resultRow.desc = resultSet.getString("room_desc");
+                resultRow.rate = resultSet.getString("room_rate_type");
+                resultRow.price = resultSet.getBigDecimal("room_rate");
                 results.add(resultRow);
             }
             _logger.info("Successfully retrieved all rooms info.");
@@ -56,8 +56,8 @@ public class RoomsPageData {
             e.printStackTrace();
         }
         for (BookARoomCellModel room : results) {
-            room.roomImage = getRoomThumbnail(room.roomId);
-            room.roomAmenities = getRoomAmenitiesInRoom(room.roomId);
+            room.image = getRoomThumbnail(room.id);
+            room.amenities = getRoomAmenitiesInRoom(room.id);
         }
 
         return results;
