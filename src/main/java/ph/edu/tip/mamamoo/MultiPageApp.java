@@ -76,4 +76,8 @@ public class MultiPageApp extends JFrame {
         this.revalidate();
         this.repaint();
     }
+
+    public LoginPage getLoginPage() {
+        return loginPage;
+    }
 }
