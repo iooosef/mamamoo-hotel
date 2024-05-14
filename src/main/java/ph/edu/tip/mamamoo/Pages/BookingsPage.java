@@ -21,7 +21,7 @@ public class BookingsPage extends JPanel {
         this.add(navBar, BorderLayout.WEST);
         this.add(new JLabel("Bookings"));
 
-        this.mainPanel = new MainPanel("Bookings & Reservations Dashboard");
+        this.mainPanel = new MainPanel("Bookings & Reservations Dashboard", app);
         this.add(mainPanel, BorderLayout.CENTER);
     }
 

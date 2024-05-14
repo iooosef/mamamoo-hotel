@@ -13,9 +13,11 @@ public class MainPanel extends JPanel {
     final Logger _logger = LogManager.getLogger();
     JPanel headerPanel;
     JLabel headerLabel;
+    private MultiPageApp app;
     NavButton acctButton;
-    public MainPanel(String headerText) {
+    public MainPanel(String headerText, MultiPageApp app) {
         this.setLayout(new MigLayout("flowy, inset 0, gap 0 0"));
+        this.app = app;
 
         this.headerPanel = new JPanel();
         this.headerPanel.setLayout(new MigLayout("inset 0"));

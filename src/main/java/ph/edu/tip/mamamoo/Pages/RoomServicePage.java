@@ -2,7 +2,7 @@ package ph.edu.tip.mamamoo.Pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ph.edu.tip.mamamoo.ActionListeners.NavButtonListener;
+import ph.edu.tip.mamamoo.Data.RoomsPageData;
 import ph.edu.tip.mamamoo.MultiPageApp;
 import ph.edu.tip.mamamoo.Pages.Shared.MainPanel;
 import ph.edu.tip.mamamoo.Pages.Shared.NavBar;
@@ -21,7 +21,7 @@ public class RoomServicePage extends JPanel {
         navBar = new NavBar(app, this);
         this.add(navBar, BorderLayout.WEST);
 
-        this.mainPanel = new MainPanel("Room Service");
+        this.mainPanel = new MainPanel("Room Service", app);
         this.add(mainPanel, BorderLayout.CENTER);
     }
 

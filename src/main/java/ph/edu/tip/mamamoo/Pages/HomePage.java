@@ -20,7 +20,7 @@ public class HomePage extends JPanel {
         navBar = new NavBar(app, this);
         this.add(navBar, BorderLayout.WEST);
 
-        this.mainPanel = new MainPanel("Booked-in Rooms Dashboard");
+        this.mainPanel = new MainPanel("Booked-in Rooms Dashboard", app);
         this.add(mainPanel, BorderLayout.CENTER);
     }
 

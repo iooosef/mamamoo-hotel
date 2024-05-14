@@ -31,7 +31,7 @@ public class RoomsPage extends JPanel {
         navBar = new NavBar(app, this);
         this.add(navBar, "dock west");
 
-        this.mainPanel = new MainPanel("Book a Room");
+        this.mainPanel = new MainPanel("Book a Room", app);
         this.add(mainPanel, "grow, w 100%, h 100%");
 
         RoomsPageData roomsPageData = new RoomsPageData();
