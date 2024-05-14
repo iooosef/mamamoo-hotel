@@ -25,6 +25,9 @@ dependencies {
     implementation files('libs/mssql-jdbc-12.6.1.jre11-sources.jar')
     // https://mvnrepository.com/artifact/com.miglayout/miglayout-swing
     implementation 'com.miglayout:miglayout-swing:5.0'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
 }
 
 test {
