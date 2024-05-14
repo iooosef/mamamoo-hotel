@@ -15,7 +15,7 @@ public class MainPanel extends JPanel {
     JLabel headerLabel;
     NavButton acctButton;
     public MainPanel(String headerText) {
-        this.setLayout(new MigLayout("flowy, inset 0"));
+        this.setLayout(new MigLayout("flowy, inset 0, gap 0 0"));
 
         this.headerPanel = new JPanel();
         this.headerPanel.setLayout(new MigLayout("inset 0"));
