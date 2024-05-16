@@ -31,6 +31,7 @@ public class RoomsPage extends JPanel {
         navBar = new NavBar(app, this);
         this.add(navBar, "dock west");
 
+//        this.mainPanel = new MainPanel("Book a Room", app);
         this.mainPanel = new MainPanel("Book a Room", app);
         this.add(mainPanel, "grow, w 100%, h 100%");
 
@@ -120,8 +121,7 @@ public class RoomsPage extends JPanel {
                 cell.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        BookARoomDialog bookARoomDialog = new BookARoomDialog(app, room);
-                        bookARoomDialog.setVisible(true);
+                        BookARoomDialog bookARoomDialog = new BookARoomDialog(app, room, app);
                     }
                 });
             });

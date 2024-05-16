@@ -3,6 +3,7 @@ package ph.edu.tip.mamamoo.Data;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ph.edu.tip.mamamoo.Models.BookARoomCellModel;
+import ph.edu.tip.mamamoo.Models.BookARoomModel;
 import ph.edu.tip.mamamoo.Models.BookingsOfRoomModel;
 import ph.edu.tip.mamamoo.Models.RoomAmenitiesModel;
 import ph.edu.tip.mamamoo.Utilities.DotEnvUtility;
@@ -10,6 +11,7 @@ import ph.edu.tip.mamamoo.Utilities.DotEnvUtility;
 import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class RoomsPageData {
     final Logger _logger = LogManager.getLogger();
@@ -139,4 +141,67 @@ public class RoomsPageData {
             return null;
         }
     }
+
+    public void insBooking(BookARoomModel model, String status) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(model.check_in_date);
+        calendar.set(Calendar.HOUR_OF_DAY, model.check_in_time.getHours());
+        calendar.set(Calendar.MINUTE, model.check_in_time.getMinutes());
+        calendar.set(Calendar.SECOND, model.check_in_time.getSeconds());
+        calendar.set(Calendar.MILLISECOND, 0);
+        Timestamp check_in_datetime = new Timestamp(calendar.getTimeInMillis());
+        Timestamp check_out_datetime = null;
+        if (model.check_out_date != null && model.check_out_time != null) {
+            calendar.setTime(model.check_out_date);
+            calendar.set(Calendar.HOUR_OF_DAY, model.check_out_time.getHours());
+            calendar.set(Calendar.MINUTE, model.check_out_time.getMinutes());
+            calendar.set(Calendar.SECOND, model.check_out_time.getSeconds());
+            calendar.set(Calendar.MILLISECOND, 0);
+            check_out_datetime = new Timestamp(calendar.getTimeInMillis());
+        }
+        Timestamp timestamp = new Timestamp(calendar.getTimeInMillis());
+        try (Connection conn = DriverManager.getConnection(connectionString)) {
+            String storedProcedureCall = "{call HotelAppDB.dbo.usp_insBooking(?,?,?,?,?,?,?,?,?,?)}";
+            CallableStatement callableStatement = conn.prepareCall(storedProcedureCall);
+            callableStatement.setInt(1, model.room_id);
+            callableStatement.setTimestamp(2, check_in_datetime);
+            callableStatement.setTimestamp(3, check_out_datetime);
+            callableStatement.setString(4, model.fname);
+            callableStatement.setString(5, model.lname);
+            callableStatement.setString(6, model.email);
+            callableStatement.setString(7, model.contact_num);
+            callableStatement.setString(8, model.senior_pwd_code);
+            callableStatement.setString(9, model.voucher);
+            callableStatement.setString(10, status);
+            callableStatement.execute();
+            _logger.info("Successfully inserted booking.");
+        } catch (SQLException e) {
+            _logger.error("Error! Failed to insert booking.");
+            e.printStackTrace();
+
+        }
+        return;
+    }
+
+    public boolean hasConflict(int room_id, Timestamp check_in, Timestamp check_out) {
+        try (Connection conn = DriverManager.getConnection(connectionString)) {
+            String storedProcedureCall = "{call HotelAppDB.dbo.usp_checkForConflict(?,?,?)}";
+            java.sql.CallableStatement callableStatement = conn.prepareCall(storedProcedureCall);
+            callableStatement.setInt(1, room_id);
+            callableStatement.setTimestamp(2, check_in);
+            callableStatement.setTimestamp(3, check_out);
+            callableStatement.execute();
+            java.sql.ResultSet resultSet = callableStatement.getResultSet();
+            while (resultSet.next()) {
+                return resultSet.getBoolean("hasConflict");
+            }
+            _logger.info("Successfully checked for booking conflict.");
+        } catch (java.sql.SQLException e) {
+            _logger.error("Error! Failed to check for booking conflict.");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
 }

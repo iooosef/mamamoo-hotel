@@ -15,7 +15,7 @@ public class AccountControlsDialog extends Dialog {
         super(owner, "Account", true);
         this.app = app;
         this.setSize(200, 180);
-        this.setLayout(new MigLayout("flowy, fill, debug"));
+        this.setLayout(new MigLayout("flowy, fill"));
         this.setLocationRelativeTo(owner);
         this.setResizable(false);
 

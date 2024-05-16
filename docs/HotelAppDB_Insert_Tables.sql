@@ -39,13 +39,14 @@ CREATE TABLE Bookings (
     room_id INT NOT NULL,
     booking_datetime DATETIME NOT NULL,
     check_in_datetime DATETIME NOT NULL,
-    check_out_datetime DATETIME NOT NULL,
+    check_out_datetime DATETIME,
     guest_given_name NVARCHAR(MAX) NOT NULL,
     guest_last_name NVARCHAR(MAX) NOT NULL,
-    guest_middle_name NVARCHAR(MAX),
-    guest_ext_name NVARCHAR(MAX),
+    email NVARCHAR(MAX),
     contact_num NVARCHAR(15) NOT NULL,
     bkng_fee MONEY NOT NULL,
+    senior_pwd NVARCHAR(MAX),
+    voucher NVARCHAR(MAX),
     status NVARCHAR(MAX) NOT NULL
 );
 
@@ -75,12 +76,16 @@ CREATE TABLE Discounts (
 CREATE TABLE Payments (
     payment_id INT IDENTITY(1,1) PRIMARY KEY,
     bkng_id INT NOT NULL,
-    payment_number NVARCHAR(50) NOT NULL,
+    payment_code NVARCHAR(50) NOT NULL,
     payment_datetime DATETIME NOT NULL,
-    payment_method_id INT NOT NULL,
-    payment_tax_fee MONEY NOT NULL,
-    payment_cost_adj MONEY,
-    payment MONEY NOT NULL,
+    payment_total_rated_cost MONEY NOT NULL,
+    payment_vat MONEY NOT NULL,
+    payment_senior_pwd_discount MONEY,
+    payment_voucher_discount MONEY,
+    payment_total_service_fee MONEY,
+    payment_total_amount_due MONEY NOT NULL,
+    payment_total_amount_paid MONEY NOT NULL,
+    payment_change MONEY NOT NULL,
     payment_refund MONEY NOT NULL,
     payment_tip MONEY
 );

@@ -6,7 +6,7 @@ public class NavButtonsModel {
     public NavButton homeButton;
     public NavButton roomsButton;
     public NavButton bookingsButton;
-    public NavButton roomServiceButton;
+    public NavButton paymentsButton;
 
     public NavButtonsModel() {}
 
@@ -25,8 +25,8 @@ public class NavButtonsModel {
     public NavButton getBookingsButton() {
         return bookingsButton;
     }
-    public NavButton getRoomServiceButton() {
-        return roomServiceButton;
+    public NavButton getPaymentsButton() {
+        return paymentsButton;
     }
 
     public void setHomeButton(NavButton homeButton) {
@@ -38,7 +38,7 @@ public class NavButtonsModel {
     public void setBookingsButton(NavButton bookingsButton) {
         this.bookingsButton = bookingsButton;
     }
-    public void setRoomServiceButton(NavButton roomServiceButton) {
-        this.roomServiceButton = roomServiceButton;
+    public void setPaymentsButton(NavButton paymentsButton) {
+        this.paymentsButton = paymentsButton;
     }
 }

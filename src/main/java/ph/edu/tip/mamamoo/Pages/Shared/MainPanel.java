@@ -22,7 +22,7 @@ public class MainPanel extends JPanel {
     private JLabel headerLabel;
     NavButton acctButton;
     public MainPanel(String headerText, MultiPageApp app) {
-        this.setLayout(new MigLayout("flowy, inset 0, gap 0 0"));
+        this.setLayout(new MigLayout("flowy, fillx, filly, inset 0, gap 0 0"));
         this.app = app;
 
         this.headerPanel = new JPanel();

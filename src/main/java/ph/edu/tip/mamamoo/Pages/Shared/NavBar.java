@@ -44,8 +44,8 @@ public class NavBar extends JPanel {
         this.navButtons.bookingsButton = new NavButton(" Bookings", IconUtility.getIcon("./static/images/bookings_ico.png", 24, 24));
         this.add(this.navButtons.bookingsButton, "growx");
 
-        this.navButtons.roomServiceButton = new NavButton(" Room Service", IconUtility.getIcon("./static/images/room_service_ico.png", 24, 24));
-        this.add(this.navButtons.roomServiceButton, "growx");
+        this.navButtons.paymentsButton = new NavButton(" Payments", IconUtility.getIcon("./static/images/payments_ico.png", 24, 24));
+        this.add(this.navButtons.paymentsButton, "growx");
 
         ClockPanel clock = new ClockPanel();
         JPanel alignYEnd = new JPanel();

@@ -13,8 +13,8 @@ public class MultiPageApp extends JFrame {
     private RegisterPage registerPage;
     private HomePage homePage;
     private RoomsPage roomsPage;
-    private BookingsPage bookingsPage;
-    private RoomServicePage roomServicePage;
+    public BookingsPage bookingsPage;
+    private PaymentsPage paymentsPage;
 
     public MultiPageApp(){
         setTitle("Mamamoo Hotel");
@@ -27,46 +27,46 @@ public class MultiPageApp extends JFrame {
         homePage = new HomePage(this);
         roomsPage = new RoomsPage(this);
         bookingsPage = new BookingsPage(this);
-        roomServicePage = new RoomServicePage(this);
+        paymentsPage = new PaymentsPage(this);
 
         LoginListener loginListener = new LoginListener(this, loginPage, homePage);
         GoToRegisterListener goToRegisterListener = new GoToRegisterListener(this, loginPage, registerPage);
 
         loginPage.addLoginListener(loginListener);
         loginPage.addGoToRegisterListener(goToRegisterListener);
-        showPage(homePage); // TODO : Change this back to loginPage
+        showPage(loginPage); // TODO : Change this back to loginPage
 
         NavBar homePageNavBar = homePage.getNavBar();
         homePageNavBar.addNavButtonListenerTo(new NavButtonListener(this, homePageNavBar, roomsPage),
                 homePageNavBar.getNavButtons().roomsButton);
         homePageNavBar.addNavButtonListenerTo(new NavButtonListener(this, homePageNavBar, bookingsPage),
                 homePageNavBar.getNavButtons().bookingsButton);
-        homePageNavBar.addNavButtonListenerTo(new NavButtonListener(this, homePageNavBar, roomServicePage),
-                homePageNavBar.getNavButtons().roomServiceButton);
+        homePageNavBar.addNavButtonListenerTo(new NavButtonListener(this, homePageNavBar, paymentsPage),
+                homePageNavBar.getNavButtons().paymentsButton);
 
         NavBar roomsPageNavBar = roomsPage.getNavBar();
         roomsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, roomsPageNavBar, homePage),
                 roomsPageNavBar.getNavButtons().homeButton);
         roomsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, roomsPageNavBar, bookingsPage),
                 roomsPageNavBar.getNavButtons().bookingsButton);
-        roomsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, roomsPageNavBar, roomServicePage),
-                roomsPageNavBar.getNavButtons().roomServiceButton);
+        roomsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, roomsPageNavBar, paymentsPage),
+                roomsPageNavBar.getNavButtons().paymentsButton);
 
         NavBar bookingsPageNavBar = bookingsPage.getNavBar();
         bookingsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, bookingsPageNavBar, homePage),
                 bookingsPageNavBar.getNavButtons().homeButton);
         bookingsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, bookingsPageNavBar, roomsPage),
                 bookingsPageNavBar.getNavButtons().roomsButton);
-        bookingsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, bookingsPageNavBar, roomServicePage),
-                bookingsPageNavBar.getNavButtons().roomServiceButton);
+        bookingsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, bookingsPageNavBar, paymentsPage),
+                bookingsPageNavBar.getNavButtons().paymentsButton);
 
-        NavBar roomServicePageNavBar = roomServicePage.getNavBar();
-        roomServicePageNavBar.addNavButtonListenerTo(new NavButtonListener(this, roomServicePageNavBar, homePage),
-                roomServicePageNavBar.getNavButtons().homeButton);
-        roomServicePageNavBar.addNavButtonListenerTo(new NavButtonListener(this, roomServicePageNavBar, roomsPage),
-                roomServicePageNavBar.getNavButtons().roomsButton);
-        roomServicePageNavBar.addNavButtonListenerTo(new NavButtonListener(this, roomServicePageNavBar, bookingsPage),
-                roomServicePageNavBar.getNavButtons().bookingsButton);
+        NavBar paymentsPageNavBar = paymentsPage.getNavBar();
+        paymentsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, paymentsPageNavBar, homePage),
+                paymentsPageNavBar.getNavButtons().homeButton);
+        paymentsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, paymentsPageNavBar, roomsPage),
+                paymentsPageNavBar.getNavButtons().roomsButton);
+        paymentsPageNavBar.addNavButtonListenerTo(new NavButtonListener(this, paymentsPageNavBar, bookingsPage),
+                paymentsPageNavBar.getNavButtons().bookingsButton);
 
     }
 
